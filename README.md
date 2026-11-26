@@ -114,5 +114,5 @@ La estructura completa está en `tree.txt`. Cada carpeta tiene un responsable:
 | Letra | Integrante | Área |
 | --- | --- | --- |
 | A | Hector | Plataforma y geografía |
-| B | Por definir | Terreno y flujo |
-| C | Por definir | Hidrología y simulación |
+| B | Daniela | Terreno y flujo |
+| C | Abimael | Hidrología y simulación |
