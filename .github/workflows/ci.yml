@@ -1,0 +1,40 @@
+# Verifica cada Pull Request y cada cambio en main.
+# Si algún paso falla, el PR no se puede integrar.
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  verificar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Instalar dependencias
+        run: pip install -r requirements.txt
+
+      - name: Estilo y errores comunes (ruff)
+        run: ruff check .
+
+      - name: Todos los archivos compilan
+        run: python -m compileall -q apps config motor scripts tests manage.py
+
+      - name: Configuración de Django
+        run: python manage.py check
+
+      - name: Migraciones al día
+        run: python manage.py makemigrations --check --dry-run
+
+      - name: tree.txt al día
+        run: python scripts/actualizar_tree.py --check
+
+      - name: Pruebas
+        run: pytest

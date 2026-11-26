@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.ruff_cache/
+
+# Datos y configuración locales (nunca se suben)
+.env
+db.sqlite3
+
+# Los videos explicativos van en la carpeta compartida, no en git
+*.mp4
+
+# Editores
+.vscode/
+.idea/

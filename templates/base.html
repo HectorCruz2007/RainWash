@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block titulo %}Inicio{% endblock %} · Escurrimiento superficial</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.9/dist/css/bootstrap.min.css">
+  {# Cada página carga aquí sus propios estilos (por ejemplo, los de Leaflet). #}
+  {% block estilos %}{% endblock %}
+</head>
+<body class="bg-body-tertiary">
+  <nav class="navbar navbar-expand-md bg-success" data-bs-theme="dark">
+    <div class="container">
+      <a class="navbar-brand" href="{% url 'inicio' %}">Escurrimiento superficial</a>
+      {% if user.is_authenticated %}
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu"
+              aria-controls="menu" aria-expanded="false" aria-label="Abrir menú">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="menu">
+        <ul class="navbar-nav me-auto">
+          {# Cada app agrega aquí el enlace a su sección, uno por línea. #}
+          <li class="nav-item"><a class="nav-link" href="{% url 'inicio' %}">Inicio</a></li>
+          {% if user.is_staff %}
+          <li class="nav-item"><a class="nav-link" href="{% url 'admin:index' %}">Administración</a></li>
+          {% endif %}
+        </ul>
+        <span class="navbar-text me-3">{{ user.username }} · {{ user.get_rol_display }}</span>
+        {# Django solo cierra la sesión con POST, por eso es un formulario y no un enlace. #}
+        <form method="post" action="{% url 'logout' %}">
+          {% csrf_token %}
+          <button class="btn btn-outline-light btn-sm" type="submit">Cerrar sesión</button>
+        </form>
+      </div>
+      {% endif %}
+    </div>
+  </nav>
+
+  <main class="container py-4">
+    {% for mensaje in messages %}
+    <div class="alert alert-{{ mensaje.tags }}" role="alert">{{ mensaje }}</div>
+    {% endfor %}
+    {% block contenido %}{% endblock %}
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.9/dist/js/bootstrap.bundle.min.js"></script>
+  {# Cada página carga aquí sus propios scripts (por ejemplo, Leaflet o Plotly). #}
+  {% block scripts %}{% endblock %}
+</body>
+</html>

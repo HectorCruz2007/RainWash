@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block titulo %}Inicio{% endblock %}
+
+{% block contenido %}
+<h1 class="h3">Hola, {{ user.get_full_name|default:user.username }}</h1>
+<p class="text-secondary">Tu rol en la plataforma: <strong>{{ user.get_rol_display }}</strong></p>
+
+<div class="card">
+  <div class="card-body">
+    <h2 class="h5 card-title">Escurrimiento superficial del agua de lluvia en terrenos agrícolas</h2>
+    <p class="card-text">
+      Esta plataforma estima por dónde corre el agua de lluvia en una parcela,
+      cuánta escurre y dónde se acumula.
+    </p>
+    {% if user.is_staff %}
+    <a class="btn btn-success" href="{% url 'admin:index' %}">Administrar usuarios y parcelas</a>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

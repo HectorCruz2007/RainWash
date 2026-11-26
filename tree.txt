@@ -1,0 +1,62 @@
+.
+├── .github/
+│   ├── workflows/
+│   │   └── ci.yml
+│   └── pull_request_template.md
+├── apps/
+│   ├── comun/
+│   │   ├── __init__.py
+│   │   ├── apps.py
+│   │   └── models.py
+│   ├── cuentas/
+│   │   ├── migrations/
+│   │   │   ├── 0001_initial.py
+│   │   │   └── __init__.py
+│   │   ├── __init__.py
+│   │   ├── admin.py
+│   │   ├── apps.py
+│   │   ├── models.py
+│   │   └── urls.py
+│   ├── parcelas/
+│   │   ├── migrations/
+│   │   │   ├── 0001_initial.py
+│   │   │   └── __init__.py
+│   │   ├── __init__.py
+│   │   ├── admin.py
+│   │   ├── apps.py
+│   │   └── models.py
+│   └── __init__.py
+├── config/
+│   ├── __init__.py
+│   ├── settings.py
+│   ├── urls.py
+│   └── wsgi.py
+├── motor/
+│   └── __init__.py
+├── scripts/
+│   ├── __init__.py
+│   ├── actualizar_tree.py
+│   └── videos_pendientes.py
+├── templates/
+│   ├── registration/
+│   │   └── login.html
+│   ├── base.html
+│   └── inicio.html
+├── tests/
+│   ├── comun/
+│   │   └── test_procedencia.py
+│   ├── cuentas/
+│   │   └── test_cuentas.py
+│   ├── parcelas/
+│   │   └── test_parcela.py
+│   └── scripts/
+│       ├── test_actualizar_tree.py
+│       └── test_videos_pendientes.py
+├── .env.example
+├── .gitattributes
+├── .gitignore
+├── manage.py
+├── pyproject.toml
+├── README.md
+├── requirements.txt
+└── tree.txt
